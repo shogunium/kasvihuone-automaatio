@@ -1,4 +1,10 @@
+import os
 import glob
+import sqlite3
+
+# Määritellään polku tietokantaan dynaamisesti
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.path.join(BASE_DIR, 'data/kasvihuone.db')
 
 def read_temperature():
     device_folder = glob.glob('/sys/bus/w1/devices/28-*')[0]
@@ -16,10 +22,17 @@ def read_temperature():
         temp_c = float(temp_string) / 1000.0
         return temp_c
 
+def save_to_db(temp):
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("INSERT INTO temperature_log (temperature) VALUES (?)", (temp,))
+    conn.commit()
+    conn.close()
+
 if __name__ == "__main__":
     temp = read_temperature()
     if temp:
         print(f"Lämpötila: {temp:.2f} °C")
+        save_to_db(temp)
     else:
         print("Lämpötilan luku epäonnistui")
-

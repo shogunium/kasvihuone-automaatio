@@ -1,0 +1,11 @@
+# Python __pycache__
+__pycache__/
+
+# Lokit
+*.log
+
+# Virtuaaliympäristö
+venv/
+
+# SQLite-tietokanta (jos et halua sitä GitHubiin)
+data/*.db
