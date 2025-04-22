@@ -3,6 +3,7 @@ __pycache__/
 
 # Lokit
 *.log
+Logs/
 
 # Virtuaaliympäristö
 venv/
