@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kasvihuone Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Kasvihuoneen Lämpötila</h1>
+	<div class="toggle">
+    	<label class="switch">
+        	<input type="checkbox" onclick="toggleTheme()">
+        	<span class="slider"></span>
+    	</label>
+    	<span class="mode-label">Dark Mode</span>
+	</div>
+	
+        <div class="buttons">
+            <button onclick="loadData('day')">Päivä</button>
+            <button onclick="loadData('week')">Viikko</button>
+        </div>
+        <canvas id="tempChart"></canvas>
+        <div id="stats"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
